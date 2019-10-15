@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\SendYourStuffType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -12,8 +13,11 @@ class SendYourStuffController extends AbstractController
      */
     public function index()
     {
+        $form = $this->createForm(SendYourStuffType::class);
+
         return $this->render('send_your_stuff/index.html.twig', [
-            'controller_name' => 'SendYourStuffController',
+          'our_form' => $form,
+          'our_form' => $form->createView()
         ]);
     }
 }
