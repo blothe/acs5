@@ -1,0 +1,17 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-flow: column;
+}
+
+main {
+  flex-grow: 1;
+}
+
+main > * {
+  height: 100%;
+  background-color: rgba(78,93,108,0.5);
+}

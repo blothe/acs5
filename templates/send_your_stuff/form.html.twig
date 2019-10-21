@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="send_your_stuff.css">
+{% endblock %}
+
+{% block body %}
+
+<div class="col-12">
+
+  <div class="row">
+
+    <div class="col-4">
+      {{ form_start(sys_form) }}
+      {{ form_widget(sys_form) }}
+      <input type="submit" class="btn btn-primary col-12" value="I'm done, send my stuff now !">
+      {{ form_end(sys_form) }}
+    </div>
+
+    <div class="jumbotron col-8 bg-transparent">
+      <h1 class="display-3">Ready to fly ?</h1>
+      <p class="lead">Just fill in the form and you're done !</p>
+      <p class="lead">Your file will be stored in our database and a download link will be sent to the recipient.</p>
+      <p class="lead">Make sure you got the right email and consider leaving a custom message for a better user experience.</p>
+      <p class="lead">Please note that your file will be removed from our database after 7 days, automatically.</p>
+      <hr class="my-4">
+      <p>Thank you for using our platform to send your stuff &#128640;</p>
+      <p class="lead">
+        <a class="btn btn-primary btn-lg" href="/" role="button">Learn more</a>
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+<script src="send_your_stuff.js"></script>
+{% endblock %}
