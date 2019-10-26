@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Upload;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -39,7 +40,9 @@ class SendYourStuffType extends AbstractType
           'placeholder' => 'jane.doe@example.com'
         ]
       ])
-      ->add('attachment', FileType::class)
+      ->add('attachment', FileType::class, [
+        'mapped' => false
+      ])
       ->add('message', TextareaType::class, [
         'attr' => [
           'placeholder' => 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...'
@@ -51,7 +54,7 @@ class SendYourStuffType extends AbstractType
   public function configureOptions(OptionsResolver $resolver)
   {
     $resolver->setDefaults([
-      // Configure your form options here
+      'data_class' => Upload::class
     ]);
   }
 }
