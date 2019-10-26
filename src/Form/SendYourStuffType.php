@@ -15,7 +15,8 @@ class SendYourStuffType extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder
-      ->add('from', TextType::class, [
+      ->add('sender_name', TextType::class, [
+        'label' => 'From',
         'attr' => [
           'placeholder' => 'John Doe'
         ]
@@ -26,7 +27,8 @@ class SendYourStuffType extends AbstractType
           'placeholder' => 'john.doe@example.com'
         ]
       ])
-      ->add('to', TextType::class, [
+      ->add('recipient_name', TextType::class, [
+        'label' => 'To',
         'attr' => [
           'placeholder' => 'Jane Doe'
         ]
