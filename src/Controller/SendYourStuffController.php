@@ -13,8 +13,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class SendYourStuffController extends AbstractController
 {
   /**
-  * @Route("/", name="home")
-  * @Route("/SendYourStuff", name="send_your_stuff")
+  * @Route("/", name="send_your_stuff_main")
+  */
+  public function main(Request $request)
+  {
+    return $this->redirectToRoute('send_your_stuff_home');
+  }
+  /**
+  * @Route("/send_your_stuff/home", name="send_your_stuff_home")
+  */
+  public function home(Request $request)
+  {
+    return $this->render('send_your_stuff/home.html.twig');
+  }
+  /**
+  * @Route("/send_your_stuff/form", name="send_your_stuff_form")
   */
   public function form(Request $request)
   {
@@ -48,12 +61,19 @@ class SendYourStuffController extends AbstractController
       $entityManager->persist($upload);
       $entityManager->flush();
 
-      return $this->redirectToRoute('home');
+      return $this->redirectToRoute('send_your_stuff_success');
     }
 
     return $this->render('send_your_stuff/form.html.twig', [
       'sys_form' => $form,
       'sys_form' => $form->createView()
     ]);
+  }
+  /**
+  * @Route("/send_your_stuff/success", name="send_your_stuff_success")
+  */
+  public function success(Request $request)
+  {
+    return $this->render('send_your_stuff/success.html.twig');
   }
 }

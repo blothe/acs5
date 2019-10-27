@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="styles/send_your_stuff.css">
+<link rel="stylesheet" href="../styles/send_your_stuff.css">
 {% endblock %}
 
 {% block body %}
@@ -26,7 +26,7 @@
       <hr class="my-4">
       <p>Thank you for using our platform to send your stuff &#128640;</p>
       <p class="lead">
-        <a class="btn btn-primary btn-lg" href="/" role="button">Learn more</a>
+        <a class="btn btn-primary btn-lg" href="{{ path("send_your_stuff_home") }}" role="button">Learn more</a>
       </p>
     </div>
 
@@ -37,5 +37,5 @@
 {% endblock %}
 
 {% block javascripts %}
-<script src="scripts/send_your_stuff.js"></script>
+<script src="../scripts/send_your_stuff.js"></script>
 {% endblock %}

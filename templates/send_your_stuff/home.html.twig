@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="../styles/send_your_stuff.css">
+{% endblock %}
+
+{% block body %}
+
+<div class="col-12">
+
+  <div class="row">
+
+    <div class="col-4 l-col">
+      <img src="../images/chris-leipelt-IYOJOCQOtBg-unsplash.jpg" alt="person holding blue airliner beside rock">
+    </div>
+
+    <div class="jumbotron col-8 bg-transparent">
+      <h1 class="display-3">Welcome on board !</h1>
+      <p class="lead">Got stuff to send that doesn't fit in an email ?</p>
+      <p class="lead">Our website offers a file transfer service which you can use for free.</p>
+      <p class="lead">All you need is your and your recipient's name and email.</p>
+      <p class="lead">Interested ? Click to learn more and get started !</p>
+      <hr class="my-4">
+      <p>Thank you for using our platform to send your stuff &#128640;</p>
+      <p class="lead">
+        <a class="btn btn-primary btn-lg" href="{{ path("send_your_stuff_form") }}" role="button">Send my stuff now !</a>
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

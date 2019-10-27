@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="../styles/send_your_stuff.css">
+{% endblock %}
+
+{% block body %}
+
+<div class="col-12">
+
+  <div class="row">
+
+    <div class="col-4 l-col">
+      <img src="../images/daniel-eledut-I59E5L3v1Ec-unsplash.jpg" alt="yellow biplane under blue sky during daytime photo">
+    </div>
+
+    <div class="jumbotron col-8 bg-transparent">
+      <h1 class="display-3">Success !</h1>
+      <p class="lead">Your file has been uploaded and is now available here.</p>
+      <p class="lead">A download link has been sent to the recipient.</p>
+      <p class="lead">By now, you should have received a confirmation email too.</p>
+      <p class="lead">We hope that you enjoyed the flight !</p>
+      <hr class="my-4">
+      <p>Thank you for using our platform to send your stuff &#128640;</p>
+      <p class="lead">
+        <a class="btn btn-primary btn-lg" href="/" role="button">Back to main</a>
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}
