@@ -15,14 +15,14 @@ class SendYourStuffController extends AbstractController
   /**
   * @Route("/", name="send_your_stuff_main")
   */
-  public function main(Request $request)
+  public function main()
   {
     return $this->redirectToRoute('send_your_stuff_home');
   }
   /**
   * @Route("/send_your_stuff/home", name="send_your_stuff_home")
   */
-  public function home(Request $request)
+  public function home()
   {
     return $this->render('send_your_stuff/home.html.twig');
   }
@@ -61,7 +61,7 @@ class SendYourStuffController extends AbstractController
       $entityManager->persist($upload);
       $entityManager->flush();
 
-      return $this->redirectToRoute('send_your_stuff_success');
+      return $this->success($upload);
     }
 
     return $this->render('send_your_stuff/form.html.twig', [
@@ -72,8 +72,10 @@ class SendYourStuffController extends AbstractController
   /**
   * @Route("/send_your_stuff/success", name="send_your_stuff_success")
   */
-  public function success(Request $request)
+  public function success($upload)
   {
-    return $this->render('send_your_stuff/success.html.twig');
+    return $this->render('send_your_stuff/success.html.twig', [
+      'upload' => $upload
+    ]);
   }
 }
