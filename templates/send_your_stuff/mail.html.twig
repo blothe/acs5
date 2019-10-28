@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="../styles/send_your_stuff.css">
+{% endblock %}
+
+{% block body %}
+
+<div class="col-12">
+
+  <div class="row">
+
+    <div class="col-4 l-col">
+      <img src="../images/daniel-eledut-I59E5L3v1Ec-unsplash.jpg" alt="yellow biplane under blue sky during daytime photo">
+    </div>
+
+    <div class="jumbotron col-8 bg-transparent">
+      <h1 class="display-3">Hello {{ upload.getRecipientName }} !</h1>
+      <p class="lead">We got a file for you, which you can download <a href="{{ asset('uploads/' ~ upload.attachment) }}">here</a>.</p>
+      <p class="lead">The file was sent by {{ upload.getSenderName }} ({{ upload.getSenderEmail }}), who left the following message :</p>
+      <blockquote class="blockquote">
+        <p class="mb-0">"{{ upload.getMessage }}"</p>
+      </blockquote>
+      <p class="lead">It will remain available for 7 days, counting from {{ upload.getCreatedAt | date('d/m/Y H:i:s') }}.</p>
+      <hr class="my-4">
+      <p>On behalf of the SendYourStuff team, all the best &#128640;</p>
+      <p class="lead">
+        <a class="btn btn-primary btn-lg" href="{{ asset('uploads/' ~ upload.attachment) }}" role="button">Download</a>
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}
