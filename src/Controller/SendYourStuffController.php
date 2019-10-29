@@ -29,7 +29,7 @@ class SendYourStuffController extends AbstractController
   /**
   * @Route("/send_your_stuff/form", name="send_your_stuff_form")
   */
-  public function form(Request $request)
+  public function form(Request $request, \Swift_Mailer $mailer)
   {
     $upload = new Upload();
     $upload->setCreatedAt(new \DateTime());
@@ -61,7 +61,7 @@ class SendYourStuffController extends AbstractController
       $entityManager->persist($upload);
       $entityManager->flush();
 
-      return $this->success($upload);
+      return $this->mail($form, $upload, $mailer);
     }
 
     return $this->render('send_your_stuff/form.html.twig', [
@@ -69,11 +69,11 @@ class SendYourStuffController extends AbstractController
       'sys_form' => $form->createView()
     ]);
   }
-  public function mail($upload, \Swift_Mailer $mailer)
+  public function mail($form, $upload, $mailer)
   {
     $message = (new \Swift_Message('SYS Delivery Service : somebody sent you stuff !'))
-      ->setFrom('sender@example.com')
-      ->setTo('recipient@example.com')
+      ->setFrom($form['sender_email']->getData())
+      ->setTo($form['recipient_email']->getData())
       ->setBody(
         $this->renderView(
           'send_your_stuff/mail.html.twig', [
@@ -82,7 +82,7 @@ class SendYourStuffController extends AbstractController
         'text/html'
       );
     $mailer->send($message);
-    return $this->render(null);
+    return $this->success($upload);
   }
   /**
   * @Route("/send_your_stuff/success", name="send_your_stuff_success")
