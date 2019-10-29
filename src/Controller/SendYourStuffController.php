@@ -61,28 +61,24 @@ class SendYourStuffController extends AbstractController
       $entityManager->persist($upload);
       $entityManager->flush();
 
-      return $this->mail($form, $upload, $mailer);
+      $message = (new \Swift_Message('SYS Delivery Service : somebody sent you stuff !'))
+        ->setFrom($form['sender_email']->getData())
+        ->setTo($form['recipient_email']->getData())
+        ->setBody(
+          $this->renderView(
+            'send_your_stuff/mail.html.twig', [
+              'upload' => $upload
+            ]),
+          'text/html'
+        );
+      $mailer->send($message);
+      return $this->success($upload);
     }
 
     return $this->render('send_your_stuff/form.html.twig', [
       'sys_form' => $form,
       'sys_form' => $form->createView()
     ]);
-  }
-  public function mail($form, $upload, $mailer)
-  {
-    $message = (new \Swift_Message('SYS Delivery Service : somebody sent you stuff !'))
-      ->setFrom($form['sender_email']->getData())
-      ->setTo($form['recipient_email']->getData())
-      ->setBody(
-        $this->renderView(
-          'send_your_stuff/mail.html.twig', [
-            'upload' => $upload
-          ]),
-        'text/html'
-      );
-    $mailer->send($message);
-    return $this->success($upload);
   }
   /**
   * @Route("/send_your_stuff/success", name="send_your_stuff_success")
