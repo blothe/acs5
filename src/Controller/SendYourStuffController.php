@@ -46,7 +46,7 @@ class SendYourStuffController extends AbstractController
 
       try {
         $attachment->move(
-          $this->getParameter('upload_directory'),
+          $this->getParameter('uploads_directory'),
           $uniqAttachmentName
         );
       }
@@ -79,6 +79,13 @@ class SendYourStuffController extends AbstractController
       'sys_form' => $form,
       'sys_form' => $form->createView()
     ]);
+  }
+  /**
+  * @Route("/send_your_stuff/link/{slug}", name="send_your_stuff_link")
+  */
+  public function link()
+  {
+    return $this->render('send_your_stuff/link.html.twig');
   }
   /**
   * @Route("/send_your_stuff/success", name="send_your_stuff_success")

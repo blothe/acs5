@@ -16,7 +16,7 @@
 
     <div class="jumbotron col-8 bg-transparent">
       <h1 class="display-3">Hello {{ upload.getRecipientName }} !</h1>
-      <p class="lead">We got a file for you, which you can download <a href="{{ url("send_your_stuff_main") }}/uploads/{{ upload.attachment }}">here</a>.</p>
+      <p class="lead">We got a file for you, which you can download <a href="{{ url("send_your_stuff_link", {'slug': upload.getAttachment}) }}">here</a>.</p>
       <p class="lead">The file was sent by {{ upload.getSenderName }} ({{ upload.getSenderEmail }}), who left the following message :</p>
       <blockquote class="blockquote">
         <p class="mb-0">"{{ upload.getMessage }}"</p>
@@ -25,7 +25,7 @@
       <hr class="my-4">
       <p>On behalf of the SendYourStuff team, all the best &#128640;</p>
       <p class="lead">
-        <a class="btn btn-primary btn-lg" href="{{ url("send_your_stuff_main") }}/uploads/{{ upload.attachment }}" role="button">Download</a>
+        <a class="btn btn-primary btn-lg" href="{{ url("send_your_stuff_link", {'slug': upload.getAttachment}) }}" role="button">Download</a>
       </p>
     </div>
 
